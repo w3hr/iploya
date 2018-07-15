@@ -1,5 +1,13 @@
-# iploya 
-your process automater.
+# iploya - your process automater.
+
+
+## Install iploya:
+
+* git clone https://github.com/w3hr/iploya/
+* create a jobfile
+* process your jobfile
+* have fun
+
 
 with iploya u can easily process "iploya process files":
 
