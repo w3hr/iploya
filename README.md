@@ -22,6 +22,7 @@ with iploya u can easily process "iploya process files":
 }
 ```
 
+
 u can combine multiple "Commands":
 
 ```javascript
@@ -53,9 +54,10 @@ u can combine multiple "Commands":
 }
 ```
 
+
 And u can react on returncode:
 
-this example will try to build a sln, if if fails (default) he will wait 10 seconds and try again
+this example will try to build a sln, if if fails he will wait 10 seconds and try again
 
 ```javascript
 {
@@ -98,4 +100,105 @@ this example will try to build a sln, if if fails (default) he will wait 10 seco
     }
   }
 }
+```
+
+
+# On
+
+Command | Result | Example
+------------ | ------------- | -------------
+next | jumps to next command | next
+break | stopps processing | break
+goto action id | gos to action id | goto Btwyk
+
+
+
+# Placeholders
+
+You can also use placeholders, standart placeholders are:
+
+Placeholer | Result
+------------ | -------------
+%%TIMESTAMP%% | Current unix timestamp
+%%DATE%% | Current date in m.d.y Format
+%%TIME%% | Current time in H:i:s Format
+%%DATETIME%% | Current full date in Y-m-d H:i:s format
+%%SAVEFILEDATETIME%% | Current date in filesave Y-m-d H-i-s format
+%%CURRENTDIR%% | Current working directory
+%%LOG%% | gos to action id
+%%PROCCESSINGTIME%% | Current log output
+%%IPLOYAVERSION%% | Current processing time in milliseconds 
+
+its possible to add placeholders as commandline argument 
+
+php iploya.php "Z:\job1.json" -tFoo:Bar
+
+now u can use %%Foo%% as a Placeholder and it will result Bar
+
+and its also possible to load an external "placeholder" file:
+
+php iploya.php "Z:\job2.json" "Z:\placeholdersforjob1.json"
+
+if the file has content like this:
+
+```javascript
+{
+	"NAME": "Mr. Foo",
+	"LASTNAME": "Bar"
+}
+```
+
+u can use it as %%NAME%% and %%LASTNAME%%
+
+# Current php_plugins:
+
+* copyDirectory
+* execShell
+* linuxGzipDirectory
+* monoCSCBuild
+* replaceFileString
+* gitCheckoutBare
+* linuxKillScreen
+* monoXBuild
+* wait
+* createDirectory
+* gitCreateRepo
+* linuxSendmail
+* msg
+* writeStringToFile
+* deleteFile
+* gitStageAndCommit
+* linuxStartProcessInScreen
+* removeDirectory
+
+
+# if u want to build ur own php plugin, u can do it:
+
+```php
+	namespace iploya;
+	require_once(realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR.'core.php');
+	
+	class createDirectory extends iployaCore {
+		
+		const MinArgs	= //MinArgs;
+		const MaxArgs	= //MaxArgs;
+		
+		public static function process($action, $iploya, $args)  {
+			/*
+				checkArgumentsCount
+			*/
+			self::checkArgumentsCount($args, self::MinArgs, self::MaxArgs);
+			
+			
+			try {			
+              //Your code here
+			}
+			catch (exception $ex) {
+				
+              //Your exception handling here (most return 1 to tell iploya something goes wrong)
+        
+			}
+			
+		}
+	}
 ```
