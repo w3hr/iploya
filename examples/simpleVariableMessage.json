@@ -1,0 +1,26 @@
+{
+  "Description": "Simple message output with an sleep timer and placeholders",
+  "Version": "iploya 00.05a",
+  "Commands": {
+    "PoRLO": {
+      "Action": "wait",
+      "Arguments": [
+        2
+      ],
+      "SetVariable": [],
+      "On": {
+        "0": "next"
+      }
+    },
+    "BMyz4": {
+      "Action": "msg",
+      "Arguments": [
+        "Hey itse me on current datetime %%DATETIME%% (%%IPLOYAVERSION%%)"
+      ],
+      "SetVariable": [],
+      "On": {
+        "0": "next"
+      }
+    }
+  }
+}

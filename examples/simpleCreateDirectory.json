@@ -1,0 +1,16 @@
+{
+  "Description": "Simple create directory example",
+  "Version": "iploya 00.05a",
+  "Commands": {
+    "NGxgQ": {
+      "Action": "createDirectory",
+      "Arguments": [
+        "/home/foo/bar/"
+      ],
+      "SetVariable": [],
+      "On": {
+        "0": "next"
+      }
+    }
+  }
+}

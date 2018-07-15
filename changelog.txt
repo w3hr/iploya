@@ -1,0 +1,55 @@
+				
+		
+		
+		iploya - easy deployer
+		Author: Ludwig Oberheuser<oberheuser@gmail.com>
+		Created: 19.06.2018
+		
+		
+		Changelog
+		---------
+		
+		
+		Version					Date				Changes
+		--------------------------------------------------------------------------------------------------------------------------------
+		iploya 00.01a			19.06.2018		First Version of iploya
+												Added first php_plugins
+	
+							
+		iploya 00.02a			20.06.2018		Some bugfixes and stuff
+												Added Console Templates
+							
+		iploya 00.03a			21.06.2018		Another bugfixes
+												Added console arguments (twait, texportlog, ..)
+												Code cleanings
+												Added logfile export and its possible now to use logfile as template variable (%%LOG%%)
+												Added getProcessingTime to logfile and can be used in as template variable (%%PROCCESSINGTIME%%)
+
+							
+		iploya 00.04a			05.07.2018		Added Variable ("SetVariable": [ {"test": "result von wait %%RESULT%%"} ]) this will be replaced in Strings with {{test}}
+							
+		
+		iploya 00.05a			15.07.2018		Code cleanings, and put iploya_console to its on class (github ready)
+												Plugins headed with licence information header
+		
+		
+		Future Plans:
+		
+		..
+
+		
+		Example calls:
+		'''''''''''''
+		
+		php	iploya		path to iploya jobfile					path to employa templatefile or "" or -t command			 -t command
+		--------------------------------------------------------------------------------------------------------------------------------
+		
+		php iploya.php "Z:\repos\holder\iploya\test\job1.json" "Z:\repos\holder\iploya\deploys\placeholder_dyn44_alpha.json" -tconsole:0
+		php iploya.php "Z:\repos\holder\iploya\test\job1.json" -tVorname:Test
+		php iploya.php "Z:\repos\holder\iploya\test\job1.json" "Z:\repos\holder\iploya\deploys\placeholder_dyn44_alpha.json" -texportlog:"z:/test.txt"		
+		
+		
+		Arguments:
+		---
+		/twait:<integer>		wait x seconds before Processing jobfile
+		/texportlog:"<path>"	export log at the end of Processing jobfile to <path>
