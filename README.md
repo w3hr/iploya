@@ -9,7 +9,7 @@
 * have fun
 
 
-with iploya u can easily process "iploya process files":
+#### with iploya u can easily process "iploya process files":
 
 ```javascript
 {
@@ -31,7 +31,7 @@ with iploya u can easily process "iploya process files":
 ```
 
 
-u can combine multiple "Commands":
+#### u can combine multiple "Commands":
 
 ```javascript
 {
@@ -62,8 +62,25 @@ u can combine multiple "Commands":
 }
 ```
 
+### detailed description
 
-And u can react on returncode:
+```
+"Description": "Simple create directory example", < -- not necessary only for example
+  "Version": "iploya 00.05a", < -- not necessary ( but maybe in future, so its better to define it )
+  "Commands": { < -- the "Commands" block of the processing file
+    "NGxgQ": { < -- the id (have to be unique!) of the "Command" action
+      "Action": "createDirectory", < -- the "Action" ( plugin name )
+      "Arguments": [ < -- Arguments that will be the parameters of the plugin
+        "/home/foo/bar/" < --  argument 1
+      ],
+      "SetVariable": [], < -- set variable block
+      "On": { < -- on block
+        "0": "next" < -- on returncode 0 goto next
+      }
+    }
+```
+
+#### And u can react on returncode:
 
 this example will try to build a sln, if if fails he will wait 10 seconds and try again
 
@@ -109,19 +126,52 @@ this example will try to build a sln, if if fails he will wait 10 seconds and tr
   }
 }
 ```
+#### Current php_plugins:
+
+In Arguments you can use Placeholders and setVariables
+
+Plugin/Actionname | Arguments | Result | OS
+------------ | ------------- | ------------- | -------------
+copyDirectory | [source, destination] | copy a directory from source to destination (recursively) | *
+createDirectory | [directory path] | create a new directory | *
+deleteFile | [file path] | delete a file | *
+execShell | [shell command] | execute a shell command | *
+gitCheckoutBare | [work tree folder, git repo folder, git branch name] | checkout a git bare repo branch to a specific folder | *
+gitCreateRepo | [path] | create a (non-bare) git repo | *
+gitStageAndCommit | [git repo path, commit message] | commits (staged) all current changes on a git repo | *
+linuxGzipDirectory | [source, destination] | gzip a directory from source to target | linux
+linuxKillScreen | [screen id] | kills a running linux screen | linux
+linuxSendmail | [to email, description, text] | sends a email with linux sendmail | linux
+linuxStartProcessInScreen | [screen id, execute file path, execute command] | starts a process in a new screen | linux
+monoCSCBuild | [path to cs file] | builds a .cs file | linux
+monoXBuild | [path to sln file, buildoptions] | builds a .sln file with buildoptions | linux
+msg | [message] | simple echo message | *
+removeDirectory | [path to directory] | removes a directory (recursively) | *
+replaceFileString | [path to replace file, replace search, replace with, OPTIONAL new file path] | replace a string in a file | *
+wait | [seconds as integer| wait x seconds | *
+writeStringToFile | [filepath, string] | (over-)write a string to a file | *
 
 
-# On
+#### On
+
+With On you can react on returncodes of php_plugins
+
+in the following example, on returncode 0 it will go to next, on 1 it will break the process.
+```javascript
+	"On": {
+	"0": "next",
+	"1": "break"
+	}
+```
+possible react possibilities:
 
 Command | Result | Example
 ------------ | ------------- | -------------
 next | jumps to next command | next
 break | stopps processing | break
-goto action id | gos to action id | goto Btwyk
+goto action id | go's to action id | goto Btwyk
 
-
-
-# Placeholders
+#### Placeholders
 
 You can also use placeholders, standart placeholders are:
 
@@ -133,7 +183,7 @@ Placeholer | Result
 %%DATETIME%% | Current full date in Y-m-d H:i:s format
 %%SAVEFILEDATETIME%% | Current date in filesave Y-m-d H-i-s format
 %%CURRENTDIR%% | Current working directory
-%%LOG%% | gos to action id
+%%LOG%% | go's to action id
 %%PROCCESSINGTIME%% | Current log output
 %%IPLOYAVERSION%% | Current processing time in milliseconds 
 
@@ -158,29 +208,41 @@ if the file has content like this:
 
 u can use it as %%NAME%% and %%LASTNAME%%
 
-# Current php_plugins:
+#### SetVariable
 
-* copyDirectory
-* execShell
-* linuxGzipDirectory
-* monoCSCBuild
-* replaceFileString
-* gitCheckoutBare
-* linuxKillScreen
-* monoXBuild
-* wait
-* createDirectory
-* gitCreateRepo
-* linuxSendmail
-* msg
-* writeStringToFile
-* deleteFile
-* gitStageAndCommit
-* linuxStartProcessInScreen
-* removeDirectory
+In all Commands u can define your own Variables.
 
+Example: 
 
-# if u want to build ur own php plugin, u can do it:
+..
+"SetVariable": [ { "Foo": "Bar" } ],
+..
+
+Now u can use this like a placeholder, for your own defined variables use {{Foo}}.
+You can also use placeholders in your SetVariable Statement:
+
+..
+"SetVariable": [ { "ActionACalledAt": "%%TIMESTAMP%%" } ],
+..
+
+```javascript
+...
+    "BMyz4": {
+      "Action": "msg",
+      "Arguments": [
+        "Hey, i only want to say that ActionACalledAt at {{ActionACalledAt}}"
+      ],
+      "SetVariable": [],
+      "On": {
+        "0": "next"
+      }
+    }
+...
+```
+(remember to use {{FOO}} instead of %%FOO%% for your own defined variables)
+
+#### your own php_plugin
+if u want to build ur own php plugin, u can do it:
 
 ```php
 	namespace iploya;
