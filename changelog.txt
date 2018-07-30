@@ -31,7 +31,9 @@
 		
 		iploya 00.05a			15.07.2018		Code cleanings, and put iploya_console to its on class (github ready)
 												Plugins headed with licence information header
-		
+
+		iploya 00.06a			30.07.2018		Commandline Argument Fix
+												
 		
 		Future Plans:
 		

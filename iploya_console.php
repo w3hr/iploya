@@ -31,8 +31,6 @@
 				
 	final class iploya_console {
 		
-		private static $ConsoleArguments		= [];
-		
 		/*
 			run
 		*/			
@@ -56,7 +54,7 @@
 			/*
 				process iploya
 			*/
-			$iploya->process($jobfile, $templatefile, self::$ConsoleArguments);
+			$iploya->process($jobfile, $templatefile, $argv);
 		}
 
 		/*

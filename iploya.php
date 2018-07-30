@@ -13,7 +13,7 @@
 	
 	final class iploya {
 		
-		const IPLOYA_VERSION			= 'iploya 00.05a';
+		const IPLOYA_VERSION			= 'iploya 00.06a';
 		private $ConsoleArguments		= [];
 		private $CurrentVariables		= [];
 		private $PluginReturnText		= [];
@@ -26,12 +26,12 @@
 		/*
 			process
 		*/		
-		public function process($jobFile, $placeholderFile=null, $ConsoleArguments=null) {
+		public function process($jobFile, $placeholderFile=null, $consoleArguments=null) {
 
 			/*
 				set defined console arguments
 			*/
-			$this->ConsoleArguments = $ConsoleArguments;
+			$this->ConsoleArguments = $consoleArguments;
 			
 			/*
 				parse commandline arguments
@@ -233,7 +233,7 @@
 		/*
 			addLog
 		*/	
-		protected function addLog($str, $addIploya=false, $throwException=false) {
+		public function addLog($str, $addIploya=false, $throwException=false) {
 			$add = PHP_EOL . ($addIploya ? 'iploya: ' : '') . date('d.m.Y H:i:s') . ' (' . $this->getprocessingTime() . "secs processing time) :" . PHP_EOL . $str;
 			$this->Log[] = $add;
 			if ($this->CommandlineOutput && !$this->getCommandlineArgExistsOrFalse('console', '0'))
