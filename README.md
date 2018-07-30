@@ -1,4 +1,4 @@
-# iploya - your process automater.
+# iploya - simple process automater
 
 
 ## Install iploya:
