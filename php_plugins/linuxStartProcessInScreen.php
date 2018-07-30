@@ -16,7 +16,7 @@
 		public static $MinArgs	= 3;
 		public static $MaxArgs	= 3;
 		
-		public static function process($iploya, $args)  {
+		public static function process($name, $iploya, $args)  {
 			$process_path		= $args[1];
 			if (!is_dir($process_path)) {
 				$iploya->addLog('not a directory: ' . $process_path . "\n");
