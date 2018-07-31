@@ -4,8 +4,8 @@
 ## Install iploya:
 
 * git clone https://github.com/w3hr/iploya/
-* create a jobfile
-* process your jobfile
+* create a jobfile (https://w3hr.github.io/iployaClient/)
+* process your jobfile (php ./iploya_console.php processfile.json)
 * have fun
 
 
@@ -14,7 +14,7 @@
 ```javascript
 {
   "Description": "Simple create directory example",
-  "Version": "iploya 00.05a",
+  "Version": "iploya 00.06a",
   "Commands": {
     "NGxgQ": {
       "Action": "createDirectory",
