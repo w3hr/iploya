@@ -195,9 +195,9 @@ Placeholer | Result
 %%DATETIME%% | Current full date in Y-m-d H:i:s format
 %%SAVEFILEDATETIME%% | Current date in filesave Y-m-d H-i-s format
 %%CURRENTDIR%% | Current working directory
-%%LOG%% | go's to action id
-%%PROCCESSINGTIME%% | Current log output
-%%IPLOYAVERSION%% | Current processing time in milliseconds 
+%%LOG%% | Current log output
+%%PROCCESSINGTIME%% | Current processing time in milliseconds 
+%%IPLOYAVERSION%% | iploya version
 
 its possible to add placeholders as commandline argument 
 
