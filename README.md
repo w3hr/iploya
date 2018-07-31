@@ -163,13 +163,25 @@ in the following example, on returncode 0 it will go to next, on 1 it will break
 	"1": "break"
 	}
 ```
-possible react possibilities:
+
+you can also use "default" to handle all other returncodes that not already defined (like default in a switch case statement):
+
+
+in the following example, on returncode 0 it will go to next, and on "default" (all others then 0) it breaks.
+```javascript
+	"On": {
+	"0": "next",
+	"default": "break"
+	}
+```
+
+react possibilities:
 
 Command | Result | Example
 ------------ | ------------- | -------------
 next | jumps to next command | next
 break | stopps processing | break
-goto action id | go's to action id | goto Btwyk
+goto id | go's to id | goto Btwyk
 
 #### Placeholders
 
